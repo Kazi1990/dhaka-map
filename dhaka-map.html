@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dhaka Live Traffic Map</title>
+    <style>
+      /* Full screen map */
+      #map {
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Load Map Script -->
+    <script>
+      function initMap() {
+        const dhaka = { lat: 23.8103, lng: 90.4125 };
+
+        // Create map centered on Dhaka
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: dhaka,
+          zoom: 12,
+          mapTypeId: 'roadmap',
+        });
+
+        // Add marker at Dhaka
+        new google.maps.Marker({
+          position: dhaka,
+          map: map,
+          title: "Dhaka City",
+        });
+
+        // Add traffic layer
+        const trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+      }
+    </script>
+
+    <!-- Google Maps API with your key -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeQfz5kqmZMo3RH1m--CeHASs_vWThh5M&callback=initMap"
+      async
+      defer>
+    </script>
+  </body>
+</html>
